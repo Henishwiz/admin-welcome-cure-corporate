@@ -1,0 +1,21 @@
+services:
+  directus:
+    image: directus/directus:latest
+    container_name: directus
+    restart: unless-stopped
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: "changeme"
+      SECRET: "changeme"
+      ADMIN_EMAIL: "admin@welcomecure.com"
+      ADMIN_PASSWORD: "Admin@2025"
+
+      # Database Config (Supabase Postgres)
+      DB_CLIENT: "pg"
+      DB_HOST: "aws-1-ap-south-1.pooler.supabase.com"
+      DB_PORT: "5432"
+      DB_DATABASE: "postgres"
+      DB_USER: "postgres.lpyfcfmykvjyoyoezukd"
+      DB_PASSWORD: "kj4nlg4WxI4OzVYu"
+      DB_SSL: "false"
