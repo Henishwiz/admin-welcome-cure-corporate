@@ -19,3 +19,27 @@ services:
       DB_USER: "postgres.lpyfcfmykvjyoyoezukd"
       DB_PASSWORD: "kj4nlg4WxI4OzVYu"
       DB_SSL: "false"
+
+      # ✅ Networking
+      HOST: "0.0.0.0"
+      PORT: "8055"
+
+      # ✅ Public URL (important for assets + CORS)
+      PUBLIC_URL: "http://13.204.83.40:8055"
+
+      # ✅ File Storage
+      STORAGE_LOCATIONS: "local"
+      STORAGE_LOCAL_DRIVER: "local"
+      STORAGE_LOCAL_ROOT: "/directus/uploads"
+
+      # ✅ CORS Configuration
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "*"
+      CORS_METHODS: "GET,POST,PATCH,DELETE"
+      CORS_ALLOWED_HEADERS: "Content-Type,Authorization"
+      CORS_EXPOSED_HEADERS: "Content-Range"
+      CORS_CREDENTIALS: "true"
+      CORS_MAX_AGE: "18000"
+
+      # Optional: disable rate limiter for simplicity
+      RATE_LIMITER_ENABLED: "false"
