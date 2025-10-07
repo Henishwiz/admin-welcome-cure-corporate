@@ -32,9 +32,6 @@ services:
       STORAGE_LOCAL_DRIVER: "local"
       STORAGE_LOCAL_ROOT: "/directus/uploads"
 
-      volumes:
-      - ./uploads:/directus/uploads
-
       # ✅ CORS Configuration
       CORS_ENABLED: "true"
       CORS_ORIGIN: "*"
@@ -46,3 +43,6 @@ services:
 
       # Optional: disable rate limiter for simplicity
       RATE_LIMITER_ENABLED: "false"
+
+    volumes:
+      - ./uploads:/directus/uploads
