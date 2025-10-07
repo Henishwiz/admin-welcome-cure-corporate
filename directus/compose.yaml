@@ -30,7 +30,10 @@ services:
       # ✅ File Storage
       STORAGE_LOCATIONS: "local"
       STORAGE_LOCAL_DRIVER: "local"
-      STORAGE_LOCAL_ROOT: "../uploads"
+      STORAGE_LOCAL_ROOT: "/directus/uploads"
+
+      volumes:
+      - ./uploads:/directus/uploads
 
       # ✅ CORS Configuration
       CORS_ENABLED: "true"
