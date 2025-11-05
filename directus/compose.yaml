@@ -1,48 +1,25 @@
+
+
 services:
   directus:
     image: directus/directus:latest
     container_name: directus
     restart: unless-stopped
+    env_file:
+      - .env
     ports:
       - "8055:8055"
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
     environment:
-      KEY: "changeme"
-      SECRET: "changeme"
+      # Admin credentials (used only on first startup)
       ADMIN_EMAIL: "admin@welcomecure.com"
       ADMIN_PASSWORD: "Admin@2025"
 
-      # Database Config (Supabase Postgres)
-      DB_CLIENT: "pg"
-      DB_HOST: "aws-1-ap-south-1.pooler.supabase.com"
-      DB_PORT: "5432"
-      DB_DATABASE: "postgres"
-      DB_USER: "postgres.lpyfcfmykvjyoyoezukd"
-      DB_PASSWORD: "kj4nlg4WxI4OzVYu"
-      DB_SSL: "false"
-
-      # ✅ Networking
-      HOST: "0.0.0.0"
-      PORT: "8055"
-
-      # ✅ Public URL (important for assets + CORS)
-      PUBLIC_URL: "http://210.79.129.214:8055"
-
-      # ✅ File Storage
-      STORAGE_LOCATIONS: "local"
-      STORAGE_LOCAL_DRIVER: "local"
-      STORAGE_LOCAL_ROOT: "/directus/uploads"
-
-      # ✅ CORS Configuration
-      CORS_ENABLED: "true"
-      CORS_ORIGIN: "*"
-      CORS_METHODS: "GET,POST,PATCH,DELETE"
-      CORS_ALLOWED_HEADERS: "Content-Type,Authorization"
-      CORS_EXPOSED_HEADERS: "Content-Range"
-      CORS_CREDENTIALS: "true"
-      CORS_MAX_AGE: "18000"
-
-      # Optional: disable rate limiter for simplicity
-      RATE_LIMITER_ENABLED: "false"
-
-    volumes:
-      - ./uploads:/directus/uploads
+    # Optional healthcheck
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8055/server/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
